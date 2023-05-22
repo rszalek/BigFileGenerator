@@ -1,12 +1,4 @@
-using System.Collections.ObjectModel;
-using System.Net.Mime;
-using System.Security.Cryptography;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-
 namespace BigFileGenerator;
-
-public record OutputTextRecord(int Number, string Sentence);
 
 public class OutputFileWriter: IDisposable
 {

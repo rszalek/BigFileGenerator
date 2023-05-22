@@ -1,22 +1,14 @@
-using System.Collections.ObjectModel;
-using System.Net.Mime;
-using System.Security.Cryptography;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-
 namespace BigFileGenerator;
 
 public class SourceFileReader: IDisposable
 {
-    private IList<string> _wordList;
-    private string _content;
+    private readonly IList<string> _wordList;
 
     public SourceFileReader(string path)
     {
-        _content = File.ReadAllText(path);
-        _wordList = _content
-            .Split(new[] { ' ', '\n', ',', '.' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
+        var content = File.ReadAllText(path);
+        _wordList = content
+            .Split(new[] { ' ', '\r', '\n', ',', '.' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
     }
 
     public string GetRandomSentence(Random rnd, int numberOfWords)
