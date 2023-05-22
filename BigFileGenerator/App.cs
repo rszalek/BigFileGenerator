@@ -4,7 +4,7 @@ namespace BigFileGenerator;
 
 public class App
 {
-    private readonly IConfigurationRoot _config;
+    private readonly IConfiguration _config;
     private readonly string _inputPath;
     private readonly string _outputPath;
     private readonly int _maxLines;
@@ -13,7 +13,7 @@ public class App
     private readonly int _minWordsPerLine;
     private readonly int _maxWordsPerLine;
 
-    public App(IConfigurationRoot config)
+    public App(IConfiguration config)
     {
         _config = config;
         _inputPath = config.GetSection("RandomTextFileOptions").GetValue<string>("Path") ?? string.Empty;
@@ -40,9 +40,9 @@ public class App
                 var marker = _maxLines / 100;
                 for (var i = 0; i < _maxLines; i++)
                 {
-                    // var sentence = string.Concat(rnd.Next(_maxCol1Number), _columnSeparator,
-                    //     sourceFileReader.GetRandomSentence(rnd, rnd.Next(_minWordsPerLine, _maxWordsPerLine)));
-                    // await outputFileWriter.WriteOneLineAsync(sentence);
+                    var sentence = string.Concat(rnd.Next(_maxCol1Number), _columnSeparator,
+                        sourceFileReader.GetRandomSentence(rnd, rnd.Next(_minWordsPerLine, _maxWordsPerLine)));
+                    await outputFileWriter.WriteOneLineAsync(sentence);
                     if (i % marker == 0)
                     {
                         Console.Write("*");
@@ -50,6 +50,7 @@ public class App
                 }
                 await outputFileWriter.FlushAll();
                 var fileInfo = new FileInfo(outPath);
+                Console.WriteLine();
                 Console.WriteLine($"{DateTime.Now:hh:mm:ss} Test file's generated: {_maxLines} lines, size: {fileInfo.Length / 1024 / 1024} MB");
             }
             finally
