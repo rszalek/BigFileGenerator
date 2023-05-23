@@ -51,7 +51,10 @@ public class App
                 await outputFileWriter.FlushAll();
                 var fileInfo = new FileInfo(outPath);
                 Console.WriteLine();
-                Console.WriteLine($"{DateTime.Now:hh:mm:ss} Test file's generated: {_maxLines} lines, size: {fileInfo.Length / 1024 / 1024} MB");
+                Console.WriteLine($"{DateTime.Now:hh:mm:ss} Test file's generated:");
+                Console.WriteLine($"{DateTime.Now:hh:mm:ss} Path: {inPath}");
+                Console.WriteLine($"{DateTime.Now:hh:mm:ss} Lines: {_maxLines}");
+                Console.WriteLine($"{DateTime.Now:hh:mm:ss} Size: {fileInfo.Length / 1024 / 1024} MB");
             }
             finally
             {
