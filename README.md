@@ -1,6 +1,17 @@
 # BigFileGenerator
 ## Big text file generator for testing.
 
+This is a tool application to generate large random data file, where each line is of the form Number. String
+For example:
+```
+415. Apple
+30432. Something something something
+1. Apple
+32. Cherry is the best
+2. Banana is yellow
+```
+Both parts can be repeated within the file.
+
 Type: **Console app.**
 
 Framework: **.NET7**
